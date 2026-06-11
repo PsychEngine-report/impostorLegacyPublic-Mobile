@@ -1,6 +1,9 @@
 .haxelib/*
 dump/*
 *.lnk
+assets_mover.py
+astcenc.exe
+convertastc.py
 
 # enoiugh git ignores guys
 # yeah ok sure
