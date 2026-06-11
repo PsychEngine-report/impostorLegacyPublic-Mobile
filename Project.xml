@@ -58,23 +58,24 @@
 	<section if="mobile">
 		<log info="INCLUDING ASSETS!!" />
 		<log info="INCLUDING DLC!!" />
-        <assets path="content/securitydlc/images-astc" rename="content/securitydlc/images" embed="false" if="MODS_ALLOWED" exclude="immages-png|images-astc" />
-        <assets path="assets/embeds/images-astc" rename="assets/embeds/images" embed="true" exclude="immages-png|images-astc"/>
-        <assets path="assets/legacy/images-astc" rename="assets/legacy/images" exclude="immages-png|images-astc"/>
-		<assets path="assets/excluded/images-astc" rename="assets/excluded/images" exclude="immages-png|images-astc"/>
-		<assets path="content/securitydlc" embed="false" if="MODS_ALLOWED" />
-		<assets path="assets/embeds" rename="assets" embed="true"/>
-		<assets path="assets/legacy" rename="assets"/>
+        <assets path="content/securitydlc/images-astc" rename="content/securitydlc/images" embed="false" if="MODS_ALLOWED"/>
+        <assets path="assets/embeds/images-astc" rename="assets/embeds/images" embed="true"/>
+        <assets path="assets/legacy/images-astc" rename="assets/legacy/images"/>
+		<assets path="assets/excluded/images-astc" rename="assets/excluded/images"/>
+		<assets path="content/securitydlc" embed="false" if="MODS_ALLOWED" exclude="immages-png|images-astc"/>
+		<assets path="assets/embeds" rename="assets" embed="true" exclude="immages-png|images-astc" />
+		<assets path="assets/excluded" rename="assets" embed="true" exclude="immages-png|images-astc" />
 	</section>
 
     <section if="desktop">
-        <assets path="content/securitydlc/images-png" rename="content/securitydlc/images" embed="false" if="MODS_ALLOWED" exclude="immages-png|images-astc" />
-        <assets path="assets/embeds/images-png" rename="assets/embeds/images" embed="true" exclude="immages-png|images-astc"/>
-        <assets path="assets/legacy/images-png" rename="assets/legacy/images" exclude="immages-png|images-astc"/>
-		<assets path="assets/excluded/images-png" rename="assets/excluded/images" exclude="immages-png|images-astc"/>
-        <assets path="content/securitydlc" embed="false" if="MODS_ALLOWED"/>
-		<assets path="assets/embeds" rename="assets" embed="true"/>
-		<assets path="assets/legacy" rename="assets"/>
+        <assets path="content/securitydlc/images-png" rename="content/securitydlc/images" embed="false" if="MODS_ALLOWED"/>
+        <assets path="assets/embeds/images-png" rename="assets/embeds/images" embed="true"/>
+        <assets path="assets/legacy/images-png" rename="assets/legacy/images" />
+		<assets path="assets/excluded/images-png" rename="assets/excluded/images"/>
+        <assets path="content/securitydlc" embed="false" if="MODS_ALLOWED" exclude="immages-png|images-astc"/>
+		<assets path="assets/embeds" rename="assets" embed="true" exclude="immages-png|images-astc"/>
+		<assets path="assets/legacy" rename="assets" exclude="immages-png|images-astc"/>
+		<assets path="assets/excluded" rename="assets" embed="true" exclude="immages-png|images-astc" />
     </section>
 
 	<!--OpenAL config-->	<!-- appreciate you cyn0x8 and smokey for finding this -->
@@ -116,7 +117,7 @@
 	<haxeflag name="--macro" value="addMetadata('@:build(funkin.backend.macro.FlxMacro.buildFlxText())', 'flixel.text.FlxText')" />
 	<haxeflag name="--macro" value="addMetadata('@:build(funkin.backend.macro.FlxMacro.buildFlxGraphic())', 'flixel.graphics.FlxGraphic')" />
 	<haxeflag name="--macro" value="addMetadata('@:build(funkin.backend.macro.FlxMacro.buildFlxDrawBaseItem())', 'flixel.graphics.tile.FlxDrawBaseItem')" />
-	<haxeflag name="--macro" value="addMetadata('@:build(funkin.backend.macro.FlxMacro.buildFlxDrawItem())', 'flixel.graphics.tile.FlxDrawQuadsItem')" />
+	<haxeflag name="--macro" value="addMetadata('@:build(funkin.backend.macro.FlxMacro.buildFlxDrawItem())', 'flixel.graphics.tile.FlxDrawQuadsIt em')" />
 	<haxeflag name="--macro" value="addMetadata('@:build(funkin.backend.macro.FlxMacro.buildFlxDrawItem())', 'flixel.graphics.tile.FlxDrawTrianglesItem')" />
 
 	<haxeflag name="--macro" value="include('funkin')" />
