@@ -65,6 +65,7 @@
 		<assets path="content/securitydlc" embed="false" if="MODS_ALLOWED" exclude="immages-png|images-astc"/>
 		<assets path="assets/embeds" rename="assets" embed="true" exclude="immages-png|images-astc" />
 		<assets path="assets/excluded" rename="assets" embed="true" exclude="immages-png|images-astc" />
+		<assets path="assets/legacy" rename="assets" embed="true" exclude="immages-png|images-astc" />
 	</section>
 
     <section if="desktop">
@@ -117,7 +118,7 @@
 	<haxeflag name="--macro" value="addMetadata('@:build(funkin.backend.macro.FlxMacro.buildFlxText())', 'flixel.text.FlxText')" />
 	<haxeflag name="--macro" value="addMetadata('@:build(funkin.backend.macro.FlxMacro.buildFlxGraphic())', 'flixel.graphics.FlxGraphic')" />
 	<haxeflag name="--macro" value="addMetadata('@:build(funkin.backend.macro.FlxMacro.buildFlxDrawBaseItem())', 'flixel.graphics.tile.FlxDrawBaseItem')" />
-	<haxeflag name="--macro" value="addMetadata('@:build(funkin.backend.macro.FlxMacro.buildFlxDrawItem())', 'flixel.graphics.tile.FlxDrawQuadsIt em')" />
+	<haxeflag name="--macro" value="addMetadata('@:build(funkin.backend.macro.FlxMacro.buildFlxDrawItem())', 'flixel.graphics.tile.FlxDrawQuadsItem')" />
 	<haxeflag name="--macro" value="addMetadata('@:build(funkin.backend.macro.FlxMacro.buildFlxDrawItem())', 'flixel.graphics.tile.FlxDrawTrianglesItem')" />
 
 	<haxeflag name="--macro" value="include('funkin')" />
