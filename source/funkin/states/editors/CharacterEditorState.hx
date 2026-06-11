@@ -63,9 +63,9 @@ enum abstract UndoType(String)
 	// var CHANGED_STEPPER; //idk...
 }
 #if desktop
-@:bitmap("assets/excluded/images/cursorCross.png")
+@:bitmap("assets/excluded/images-png/cursorCross.png")
 #elseif mobile
-@:bitmap("assets/excluded/images/cursorCross.astc")
+@:bitmap("assets/excluded/images-astc/cursorCross.astc")
 #end
 class Crosshair extends openfl.display.BitmapData {}
 
