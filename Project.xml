@@ -54,13 +54,25 @@
 
 	<assets path="LEGACY.md" rename="CHANGELOG.md"/>
 	
-	<section unless="ASSET_REDIRECT">
+	<section if="mobile">
 		<log info="INCLUDING ASSETS!!" />
-		<log info="INCLUDING DLC!!" if="DLC" />
-		<assets path="content/securitydlc" embed="false" if="MODS_ALLOWED DLC"/>
+		<log info="INCLUDING DLC!!" />
+        <assets path="content/securitydlc/images-astc" rename="content/securitydlc/images" embed="false" if="MODS_ALLOWED" exclude="immages-png|images-astc" />
+        <assets path="assets/embeds/images-astc" rename="assets/images" embed="true" exclude="immages-png|images-astc"/>
+        <assets path="assets/legacy/images-astc" rename="assets/images" exclude="immages-png|images-astc"/>
+		<assets path="content/securitydlc" embed="false" if="MODS_ALLOWED" />
 		<assets path="assets/embeds" rename="assets" embed="true"/>
 		<assets path="assets/legacy" rename="assets"/>
 	</section>
+
+    <section if="desktop">
+        <assets path="content/securitydlc/images-png" rename="content/securitydlc/images" embed="false" if="MODS_ALLOWED" exclude="immages-png|images-astc" />
+        <assets path="assets/embeds/images-png" rename="assets/images" embed="true" exclude="immages-png|images-astc"/>
+        <assets path="assets/legacy/images-png" rename="assets/images" exclude="immages-png|images-astc"/>
+        <assets path="content/securitydlc" embed="false" if="MODS_ALLOWED"/>
+		<assets path="assets/embeds" rename="assets" embed="true"/>
+		<assets path="assets/legacy" rename="assets"/>
+    </section>
 
 	<!--OpenAL config-->	<!-- appreciate you cyn0x8 and smokey for finding this -->
 	<section if="desktop">
