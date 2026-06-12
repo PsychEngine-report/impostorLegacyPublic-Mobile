@@ -43,11 +43,6 @@ class Main extends Sprite
 		#if android
 		StorageUtil.initExternalStorageDirectory();
 		StorageUtil.requestPermissions();
-		var contentPath = AndroidContext.getExternalFilesDir() + '/content';
-		if (sys.FileSystem.exists(contentPath)) {
-			StorageUtil.chmod(2777, contentPath);
-		}
-		StorageUtil.copySpesificFileFromAssets('mobile/storageModes.txt', StorageUtil.getCustomStoragePath());
 		#end
 		Sys.setCwd(StorageUtil.getStorageDirectory());
 		#end
