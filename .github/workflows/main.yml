@@ -248,7 +248,7 @@ jobs:
           haxelib run lime config ANDROID_SETUP true
 
       - name: Compile Android
-        run: haxelib run lime build android -release -final -v "-D NMV_VER=${{ env.VERSION_BASE }}.${{ github.run_number }}" ${{ inputs.buildFlags }}
+        run: haxelib run lime build android -release -final "-D NMV_VER=${{ env.VERSION_BASE }}.${{ github.run_number }}" ${{ inputs.buildFlags }}
 
       - name: Publish Artifact
         uses: actions/upload-artifact@v4
@@ -314,7 +314,7 @@ jobs:
           haxelib run hxpkg install --force
           
       - name: Compile iOS
-        run: haxelib run lime build ios -nosign -release -final -v "-D NMV_VER=${{ env.VERSION_BASE }}.${{ github.run_number }}" ${{ inputs.buildFlags }}
+        run: haxelib run lime build ios -nosign -release -final -j 2"-D NMV_VER=${{ env.VERSION_BASE }}.${{ github.run_number }}" ${{ inputs.buildFlags }}
         
       - name: Make IPA
         run: |

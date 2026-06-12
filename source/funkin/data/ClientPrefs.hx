@@ -47,6 +47,10 @@ enum abstract VsyncMode(String) from String to String
 @:build(funkin.backend.macro.SaveMacro.buildSaveVars('im gonna make this do smth later okay just not rn'))
 class ClientPrefs
 {
+    // mobile ------------------------------------------------------------------------//
+
+    @saveVar public static var storageType:String = 'EXTERNAL';
+
 	// legacy ------------------------------------------------------------------------//
 	@saveVar public static var finaleState:FinaleState = INACTIVE;
 	
@@ -144,7 +148,9 @@ class ClientPrefs
 	
 	@saveVar public static var showFPS:Bool = false;
 	
+    #if desktop
 	@saveVar public static var discordRPC(default, set):Bool = true;
+    #end
 	
 	// its aura ok
 	@saveVar public static var camFollowsCharacters:Bool = true;
