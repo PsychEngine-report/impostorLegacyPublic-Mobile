@@ -19,7 +19,9 @@ class Init extends FlxState
 		// load settings/save
 		funkin.input.Controls.init();
 		
-		ClientPrefs.load();
+		new flixel.util.FlxTimer().start(0.1, function(tmr:flixel.util.FlxTimer) {
+        ClientPrefs.load();
+        });
 		
 		funkin.data.Highscore.load();
 		

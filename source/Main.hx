@@ -38,6 +38,19 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
+
+        #if mobile
+		#if android
+		StorageUtil.initExternalStorageDirectory();
+		StorageUtil.requestPermissions();
+		var contentPath = AndroidContext.getExternalFilesDir() + '/content';
+		if (sys.FileSystem.exists(contentPath)) {
+			StorageUtil.chmod(2777, contentPath);
+		}
+		StorageUtil.copySpesificFileFromAssets('mobile/storageModes.txt', StorageUtil.getCustomStoragePath());
+		#end
+		Sys.setCwd(StorageUtil.getStorageDirectory());
+		#end
 		
 		funkin.Mods.updateModList();
 		funkin.Mods.loadTopMod();
