@@ -10,6 +10,10 @@ import openfl.Assets;
 import haxe.io.Bytes;
 import funkin.data.ClientPrefs;
 
+#if sys
+import sys.io.Process;
+#end
+
 /**
  * A simple storage class for mobile.
  * @author ArkoseLabs
