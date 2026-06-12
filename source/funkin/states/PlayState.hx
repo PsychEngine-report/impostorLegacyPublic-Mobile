@@ -675,9 +675,11 @@ class PlayState extends MusicBeatState
 		arrowSkins = SONG.arrowSkins;
 		
 		// set up rpc stuff
+        #if desktop
 		rpcDescription = isStoryMode == true ? 'Story Mode' : 'Freeplay';
 		rpcPausedDescription = 'Paused - ' + rpcDescription;
 		rpcSongName = SONG.song;
+        #end
 		
 		scripts.set('isStoryMode', isStoryMode);
 		scripts.set('attackCharacter', attackCharacter);
@@ -1862,11 +1864,13 @@ class PlayState extends MusicBeatState
 	 * Sets the Discord RPC to display the default in song descriptions.
 	 * @param showTime if showTime, the RPC will show the current song progress.
 	 */
+    #if desktop
 	inline function resetDiscordRPC(showTime:Bool = false)
 	{
 		if (!showTime) DiscordClient.changePresence(rpcDescription, rpcSongName, dad.healthIcon);
 		else DiscordClient.changePresence(rpcDescription, rpcSongName, dad.healthIcon, true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
 	}
+    #end
 	
 	function resyncVocals():Void
 	{
