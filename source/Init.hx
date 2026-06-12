@@ -26,8 +26,10 @@ class Init extends FlxState
 		if (FlxG.save.data.weekCompleted != null) funkin.states.StoryMenuState.weekCompleted = FlxG.save.data.weekCompleted;
 		
 		FlxSprite.defaultAntialiasing = ClientPrefs.globalAntialiasing;
-		
+
+		#if desktop
 		DiscordClient.check();
+		#end
 		
 		#if MODS_ALLOWED
 		funkin.Mods.pushGlobalMods();
