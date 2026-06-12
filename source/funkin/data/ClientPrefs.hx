@@ -635,7 +635,8 @@ class ClientPrefs
 	{
 		return photosensitive = !now;
 	}
-	
+
+	#if desktop
 	static function set_discordRPC(now:Bool):Bool
 	{
 		discordRPC = now;
@@ -644,6 +645,7 @@ class ClientPrefs
 		
 		return now;
 	}
+	#end
 }
 
 @:access(flixel.util.FlxSave)
