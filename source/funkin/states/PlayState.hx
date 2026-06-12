@@ -473,7 +473,7 @@ class PlayState extends MusicBeatState
 	 */
     #if desktop
 	var rpcSongName:String = '';
-    #end*	
+    #end	
 	/**
 	 * Pause character portrait overwrite variable
 	**/
