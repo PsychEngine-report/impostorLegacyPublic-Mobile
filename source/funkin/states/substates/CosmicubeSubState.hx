@@ -74,9 +74,9 @@ class CosmicubeSubState extends MusicBeatSubstate
 		super.create();
 		CosmicubeData.reload(false);
 		CosmeticsSubstate.preloadForFreeplay();
-		
+		#if desktop
 		DiscordClient.changePresence("Cosmicube Menu");
-		
+		#end
 		this.meta = (CosmicubeData.cosmicubeMetas.get(cosmicube) ?? CosmicubeData.fallbackMeta);
 		
 		Mods.currentModDirectory = (meta.mod.length == 0 ? null : meta.mod);

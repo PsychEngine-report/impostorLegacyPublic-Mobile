@@ -40,7 +40,9 @@ class MenuCharacterEditorState extends MusicBeatState
 			};
 			
 		// Updating Discord Rich Presence
+        #if desktop
 		DiscordClient.changePresence("Menu Character Editor", "Editting: " + characterFile.image);
+        #end
 		
 		grpWeekCharacters = new FlxTypedGroup<MenuCharacter>();
 		for (char in 0...3)
@@ -242,7 +244,9 @@ class MenuCharacterEditorState extends MusicBeatState
 		updateOffset();
 		
 		// Updating Discord Rich Presence
+        #if desktop
 		DiscordClient.changePresence("Menu Character Editor", "Editting: " + characterFile.image);
+        #end
 	}
 	
 	override function getEvent(id:String, sender:Dynamic, data:Dynamic, ?params:Array<Dynamic>)

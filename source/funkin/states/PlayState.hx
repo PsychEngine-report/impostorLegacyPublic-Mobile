@@ -453,22 +453,27 @@ class PlayState extends MusicBeatState
 	 * 
 	 * Can be manually changed.
 	 */
+    #if desktop
 	var rpcDescription:String = '';
+    #end
 	
 	/**
 	 * The shown paused Description in the discord RPC.
 	 * 
 	 * Can be manually changed.
 	 */
+    #if desktop
 	var rpcPausedDescription:String = '';
+    #end
 	
 	/**
 	 * The shown song name in the discord RPC.
 	 * 
 	 * Can be manually changed.
 	 */
+    #if desktop
 	var rpcSongName:String = '';
-	
+    #end*	
 	/**
 	 * Pause character portrait overwrite variable
 	**/
@@ -481,7 +486,9 @@ class PlayState extends MusicBeatState
 	 *
 	 * Useful for if you want custom Discord RPC messages and PlayState gets in the way.
 	**/
+    #if desktop
 	public var automatedDiscord:Bool = true;
+    #end
 	
 	/**
 	 * Group of general scripts.
@@ -891,7 +898,9 @@ class PlayState extends MusicBeatState
 		Paths.music(Paths.sanitize('breakfast'));
 		
 		// Updating Discord Rich Presence.
+        #if desktop
 		resetDiscordRPC();
+        #end
 		
 		input = new InputSystem(controls);
 		input.addEventListener(InputEvent.INPUT_PRESSED, onInputPress);
@@ -1364,7 +1373,9 @@ class PlayState extends MusicBeatState
 		if (paused) audio.pause();
 		
 		// Updating Discord Rich Presence (with Time Left)
+        #if desktop
 		if (automatedDiscord) DiscordClient.changePresence(rpcDescription, rpcSongName, null, true, songLength);
+        #end
 		
 		scripts.call('onSongStart', []);
 		callHUDFunc(hud -> hud.onSongStart());
@@ -1818,8 +1829,9 @@ class PlayState extends MusicBeatState
 			
 			paused = false;
 			scripts.call('onResume', []);
-			
+			#if desktop
 			resetDiscordRPC(startTimer != null && startTimer.finished);
+            #end
 		}
 		scripts.call('onSubstateClose', []);
 		super.closeSubState();
@@ -1829,7 +1841,9 @@ class PlayState extends MusicBeatState
 	{
 		if (health > 0 && !paused)
 		{
+            #if desktop
 			resetDiscordRPC(Conductor.songPosition > 0.0);
+            #end
 		}
 		
 		super.onFocus();
@@ -1837,7 +1851,9 @@ class PlayState extends MusicBeatState
 	
 	override public function onFocusLost():Void
 	{
+        #if desktop
 		if (health > 0 && !paused) resetDiscordRPC(false);
+        #end
 		
 		super.onFocusLost();
 	}
@@ -2206,8 +2222,9 @@ class PlayState extends MusicBeatState
 		
 		audio?.pause();
 		openSubState(new PauseSubState());
-		
+		#if desktop
 		if (automatedDiscord) DiscordClient.changePresence(rpcPausedDescription, rpcSongName);
+        #end
 	}
 	
 	function openChartEditor():Void
@@ -2221,8 +2238,9 @@ class PlayState extends MusicBeatState
 		
 		FlxG.switchState(ChartEditorState.new);
 		chartingMode = true;
-		
+		#if desktop
 		DiscordClient.changePresence('Chart Editor');
+        #end
 	}
 	
 	function openCharacterEditor():Void
@@ -2235,8 +2253,9 @@ class PlayState extends MusicBeatState
 		
 		disableModifiers();
 		FlxG.switchState(() -> new CharacterEditorState(SONG.player2, true));
-		
+		#if desktop
 		DiscordClient.changePresence("Character Editor", null, null, true);
+        #end
 	}
 	
 	public function updateScoreBar(miss:Bool = false):Void
@@ -2277,7 +2296,9 @@ class PlayState extends MusicBeatState
 				openSubState(new GameOverSubstate(char));
 				
 				// Game Over doesn't get his own variable because it's only used here
+                #if desktop
 				if (automatedDiscord) DiscordClient.changePresence("Game Over - " + rpcDescription, rpcSongName);
+                #end
 				
 				isDead = true;
 				totalBeat = 0;

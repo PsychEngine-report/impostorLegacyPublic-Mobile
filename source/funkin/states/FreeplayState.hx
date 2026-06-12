@@ -172,7 +172,9 @@ class FreeplayState extends AmongUIState
 		FunkinAssets.cache.clearStoredMemory();
 		// FunkinAssets.cache.clearUnusedMemory();
 		
+        #if desktop
 		DiscordClient.changePresence("Freeplay Menu");
+        #end
 		
 		funkin.data.CosmicubeData.reload();
 		

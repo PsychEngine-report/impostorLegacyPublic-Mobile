@@ -107,7 +107,9 @@ class OptionsState extends MusicBeatState
 	
 	override function create()
 	{
+        #if desktop
 		DiscordClient.changePresence("Options Menu");
+        #end
 		
 		initStateScript();
 		persistentUpdate = true;

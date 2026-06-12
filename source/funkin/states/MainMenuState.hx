@@ -59,8 +59,10 @@ class MainMenuState extends MusicBeatState
 	{
 		Mods.currentModDirectory = null;
 		
+        #if desktop
 		DiscordClient.changePresence("In the Menus");
-		Lang.reloadLangFile();
+        #end
+        Lang.reloadLangFile();
 		
 		persistentUpdate = persistentDraw = true;
 		

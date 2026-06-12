@@ -55,8 +55,9 @@ class StoryMenuState extends AmongUIState
 		
 		maze = new StoryNode('root');
 		cruiser = new StoryCruiser();
-		
+		#if desktop
 		DiscordClient.changePresence("Story Menu");
+        #end
 		
 		PlayState.missLimit = false;
 		FlxG.mouse.visible = true;
