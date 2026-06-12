@@ -42,7 +42,7 @@ jobs:
           haxelib run hxpkg install --force
 
       - name: Compile Windows
-        run: haxelib run lime build windows -release -D NMV_VER=${{ env.VERSION_BASE }}.${{ github.run_number }} ${{ inputs.buildFlags || '' }}
+        run: haxelib run lime build windows -release -final -D NMV_VER=${{ env.VERSION_BASE }}.${{ github.run_number }} ${{ inputs.buildFlags || '' }}
 
       - name: ZIP Windows Build
         run: |
@@ -91,7 +91,7 @@ jobs:
           haxelib run hxpkg install --force
 
       - name: Compile Linux
-        run: haxelib run lime build linux -release "-D NMV_VER=${{ env.VERSION_BASE }}.${{ github.run_number }}" ${{ inputs.buildFlags }}
+        run: haxelib run lime build linux -release -final "-D NMV_VER=${{ env.VERSION_BASE }}.${{ github.run_number }}" ${{ inputs.buildFlags }}
 
       - name: ZIP Build
         run: |
@@ -163,7 +163,7 @@ jobs:
           haxelib run hxpkg install --force
 
       - name: Compile macOS
-        run: haxelib run lime build mac -release "-D NMV_VER=${{ env.VERSION_BASE }}.${{ github.run_number }}" ${{ inputs.buildFlags }}
+        run: haxelib run lime build mac -release -final "-D NMV_VER=${{ env.VERSION_BASE }}.${{ github.run_number }}" ${{ inputs.buildFlags }}
           
       - name: ZIP Build
         run: |
@@ -248,13 +248,13 @@ jobs:
           haxelib run lime config ANDROID_SETUP true
 
       - name: Compile Android
-        run: haxelib run lime build android -final "-D NMV_VER=${{ env.VERSION_BASE }}.${{ github.run_number }}" ${{ inputs.buildFlags }}
+        run: haxelib run lime build android -final -release -ONLY_ARM64 "-D NMV_VER=${{ env.VERSION_BASE }}.${{ github.run_number }}" ${{ inputs.buildFlags }}
 
       - name: Publish Artifact
         uses: actions/upload-artifact@v4
         with:
           name: ImpostorLegacy-Android
-          path: export/release/android/bin/app/build/outputs/apk/debug/*.apk
+          path: export/release/android/bin/app/build/outputs/apk/release/*.apk
 
       - name: Clear Old Cache
         uses: actions/github-script@v7
@@ -386,5 +386,5 @@ jobs:
             artifacts/ImpostorLegacy-Windows/ImpostorLegacy-Windows.zip
             artifacts/ImpostorLegacy-Linux/ImpostorLegacy-Linux.zip
             artifacts/ImpostorLegacy-MacOs/ImpostorLegacy-MacOs.zip
-            artifacts/ImpostorLegacy-Android/*.apk
-            artifacts/ImpostorLegacy-iOS/*.ipa
+            artifacts/ImpostorLegacy-Android/ImpostorLegacy-Android.apk
+            artifacts/ImpostorLegacy-iOS/ImpostorLegacy-Android.ipa

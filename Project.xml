@@ -176,6 +176,14 @@
 	<!--For haxe 4.3.0 and newer disables warnings-->
 	<haxedef name="no-deprecation-warnings"/>
 
+    <!-- Allow Write Access to EXTERNAL_DATA Directory -->
+	<haxedef name="SHARE_MOBILE_FILES" if="mobile" />
+    
+    <!-- Do whatever you want I'm tired uninstall and install everytime -->
+	<certificate path="key.keystore" password="psychengine" alias="psychport" alias-password="psychengine" if="android" unless="debug" />
+	<config:android minimum-sdk-version="26" />
+    <haxedef name="DISABLE_AUDIO_FOCUS" if="android" />
+
 	<!-- _________________________________ Custom _______________________________ -->
 
 	<icon path="projFiles/icon/icon16.png" size='16'/>
