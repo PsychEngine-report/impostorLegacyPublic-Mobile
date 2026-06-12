@@ -10,7 +10,7 @@ on:
       name:
         required: false
         type: string
-        default: "NightmareBuild"
+        default: "ImpostorLegacy"
       doCache:
         required: false
         type: string
@@ -47,7 +47,7 @@ jobs:
       - name: ZIP Windows Build
         run: |
           cd export/release/windows/bin
-          Compress-Archive -Path * -DestinationPath ../../../../NightmareVision-Windows.zip
+          Compress-Archive -Path * -DestinationPath ../../../../ImpostorLegacy-Windows.zip
 
       - name: Publish Artifact
         uses: actions/upload-artifact@v4
@@ -96,7 +96,7 @@ jobs:
       - name: ZIP Build
         run: |
           cd export/release/linux/bin
-          zip -r ../../../../NightmareVision-Linux.zip .
+          zip -r ../../../../ImpostorLegacy-Linux.zip .
 
       - name: Publish Artifact
         uses: actions/upload-artifact@v4
@@ -168,7 +168,7 @@ jobs:
       - name: ZIP Build
         run: |
           cd export/release/macos/bin
-          zip -r ../../../../NightmareVision-MacOs.zip .
+          zip -r ../../../../ImpostorLegacy-MacOs.zip .
 
       - name: Publish Artifact
         uses: actions/upload-artifact@v4
@@ -248,12 +248,12 @@ jobs:
           haxelib run lime config ANDROID_SETUP true
 
       - name: Compile Android
-        run: haxelib run lime build android -release "-D NMV_VER=${{ env.VERSION_BASE }}.${{ github.run_number }}" ${{ inputs.buildFlags }}
+        run: haxelib run lime build android -release -final -v "-D NMV_VER=${{ env.VERSION_BASE }}.${{ github.run_number }}" ${{ inputs.buildFlags }}
 
       - name: Publish Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: NightmareVision-Android
+          name: ImpostorLegacy-Android
           path: export/release/android/bin/app/build/outputs/apk/release/*.apk
 
       - name: Clear Old Cache
@@ -314,7 +314,7 @@ jobs:
           haxelib run hxpkg install --force
           
       - name: Compile iOS
-        run: haxelib run lime build ios -nosign -release "-D NMV_VER=${{ env.VERSION_BASE }}.${{ github.run_number }}" ${{ inputs.buildFlags }}
+        run: haxelib run lime build ios -nosign -release -final -v "-D NMV_VER=${{ env.VERSION_BASE }}.${{ github.run_number }}" ${{ inputs.buildFlags }}
         
       - name: Make IPA
         run: |
@@ -328,7 +328,7 @@ jobs:
       - name: Publish Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: NightmareVision-iOS
+          name: ImpostorLegacy-iOS
           path: export/release/ios/build/Release-iphoneos/*.ipa
       - name: Clear Old Cache
         uses: actions/github-script@v7
@@ -383,8 +383,8 @@ jobs:
           tag_name: "${{ env.VERSION_BASE }}.${{ github.run_number }}"
           make_latest: true
           files: |
-            artifacts/NightmareVision-Windows/NightmareVision-Windows.zip
-            artifacts/NightmareVision-Linux/NightmareVision-Linux.zip
-            artifacts/NightmareVision-MacOs/NightmareVision-MacOs.zip
-            artifacts/NightmareVision-Android/*.apk
-            artifacts/NightmareVision-iOS/*.ipa
+            artifacts/ImpostorLegacy-Windows/ImpostorLegacy-Windows.zip
+            artifacts/ImpostorLegacy-Linux/ImpostorLegacy-Linux.zip
+            artifacts/ImpostorLegacy-MacOs/ImpostorLegacy-MacOs.zip
+            artifacts/ImpostorLegacy-Android/*.apk
+            artifacts/ImpostorLegacy-iOS/*.ipa
