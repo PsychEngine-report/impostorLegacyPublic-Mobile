@@ -7,6 +7,7 @@ import openfl.display.StageScaleMode;
 import flixel.FlxG;
 import flixel.FlxGame;
 import flixel.input.keyboard.FlxKey;
+import mobile.backend.StorageUtil;
 
 import funkin.backend.DebugDisplay;
 
