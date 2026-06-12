@@ -8,7 +8,7 @@ import funkin.objects.menu.BaseNode;
 using StringTools;
 
 #if sys
-import sys.FileSystem;
+import funk.PsychFileSystem as FileSystem;
 #end
 
 class CosmicubeNode extends BaseNode

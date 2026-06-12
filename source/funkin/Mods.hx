@@ -329,11 +329,16 @@ class Mods
 		
 		inline function resetIcon()
 		{
+            #if desktop
 			final path = Paths.getPath('images/branding/icon/icon64.png', null, true);
+            #elseif mobile
+            final path = Paths.getPath('images/branding/icon/icon64.astc', null, true);
+            #end
 			
 			if (FunkinAssets.exists(path)) FlxG.stage.window.setIcon(Image.fromBytes(FunkinAssets.getBytes(path)));
 		}
 		
+        #if desktop
 		if (pack.iconFile != null)
 		{
 			final path = Paths.getPath('images/${pack.iconFile}.png', null, true);
@@ -345,6 +350,19 @@ class Mods
 				Logger.log('Could not find Icon ${pack.iconFile}', ERROR);
 			}
 		}
+        #elseif mobile
+        if (pack.iconFile != null)
+		{
+			final path = Paths.getPath('images/${pack.iconFile}.astc', null, true);
+			
+			if (FunkinAssets.exists(path)) FlxG.stage.window.setIcon(Image.fromBytes(FunkinAssets.getBytes(path)));
+			else
+			{
+				resetIcon();
+				Logger.log('Could not find Icon ${pack.iconFile}', ERROR);
+			}
+		}
+        #end
 		else resetIcon();
 		
 		if (pack.defaultTransition != null)

@@ -242,9 +242,18 @@ class Paths
 	 * Searches for a file within the `images` directory and caches a `FlxGraphic` instance.
 	 */
 	public static inline function image(key:String, ?parentFolder:String, allowGPU:Bool = true, checkMods:Bool = true, mode:PathsTestMode = NORMAL):FlxGraphic
-	{
-		return FunkinAssets.getGraphic(getPath('images/$key.png', parentFolder, checkMods, mode), true, allowGPU);
-	}
+    {
+        #if mobile
+        var path:String = getPath('images/$key.astc', parentFolder, checkMods, mode);
+        if (!FunkinAssets.exists(path)) {
+            path = getPath('images/$key.png', parentFolder, checkMods, mode);
+        }
+        #else
+        var path:String = getPath('images/$key.png', parentFolder, checkMods, mode);
+        #end
+
+        return FunkinAssets.getGraphic(path, true, allowGPU);
+    }
 	
 	/**
 	 * Searches for a font file wihin the `fonts` directory.
@@ -322,71 +331,96 @@ class Paths
 	 * `Sparrow` has priority.
 	 */
 	public static inline function getAtlasFrames(key:String, ?parentFolder:String, allowGPU:Bool = true, checkMods:Bool = true, mode:PathsTestMode = NORMAL):FlxAtlasFrames
-	{
-		final directPath = getPath('images/$key.png', parentFolder, checkMods, mode).withoutExtension();
-		
-		final tempFrames = tempAtlasFramesCache.get(directPath);
-		if (tempFrames != null) return tempFrames;
-		
-		final xmlPath = getPath('images/$key.xml', parentFolder, checkMods, mode);
-		final txtPath = getPath('images/$key.txt', parentFolder, checkMods, mode);
-		
-		final graphic = image(key, parentFolder, allowGPU, checkMods, mode);
-		
-		// sparrow
-		if (FunkinAssets.exists(xmlPath))
-		{
-			// until flixel does null safety
-			@:nullSafety(Off)
-			{
-				final frames = FlxAtlasFrames.fromSparrow(graphic, FunkinAssets.exists(xmlPath) ? FunkinAssets.getContent(xmlPath) : null);
-				if (frames != null) tempAtlasFramesCache.set(directPath, frames);
-				return frames;
-			}
-		}
-		
-		@:nullSafety(Off) // until flixel does null safety
-		{
-			final frames = FlxAtlasFrames.fromSpriteSheetPacker(graphic, FunkinAssets.exists(txtPath) ? FunkinAssets.getContent(txtPath) : null);
-			if (frames != null) tempAtlasFramesCache.set(directPath, frames);
-			return frames;
-		}
-	}
-	
-	public static inline function getSparrowAtlas(key:String, ?parentFolder:String, ?allowGPU:Bool = true, checkMods:Bool = true):FlxAtlasFrames
-	{
-		final directPath = getPath('images/$key.png', parentFolder, checkMods).withoutExtension();
-		final tempFrames = tempAtlasFramesCache.get(directPath);
-		if (tempFrames != null)
-		{
-			return tempFrames;
-		}
-		
-		final xmlPath = getPath('images/$key.xml', parentFolder, checkMods);
-		@:nullSafety(Off) // until flixel does null safety
-		{
-			final frames = FlxAtlasFrames.fromSparrow(image(key, parentFolder, allowGPU, checkMods), FunkinAssets.exists(xmlPath) ? FunkinAssets.getContent(xmlPath) : null);
-			if (frames != null) tempAtlasFramesCache.set(directPath, frames);
-			return frames;
-		}
-	}
-	
-	public static inline function getPackerAtlas(key:String, ?parentFolder:String, ?allowGPU:Bool = true, checkMods:Bool = true)
-	{
-		final directPath = getPath('images/$key.png', parentFolder, checkMods).withoutExtension();
-		final tempFrames = tempAtlasFramesCache.get(directPath);
-		if (tempFrames != null)
-		{
-			return tempFrames;
-		}
-		
-		final txtPath = getPath('images/$key.txt', parentFolder, checkMods);
-		@:nullSafety(Off) // until flixel does null safety
-		{
-			final frames = FlxAtlasFrames.fromSpriteSheetPacker(image(key, parentFolder, allowGPU, checkMods), FunkinAssets.exists(txtPath) ? FunkinAssets.getContent(txtPath) : null);
-			if (frames != null) tempAtlasFramesCache.set(directPath, frames);
-			return frames;
-		}
+    {
+        #if mobile
+        var imagePath = getPath('images/$key.astc', parentFolder, checkMods, mode);
+        if (!FunkinAssets.exists(imagePath)) {
+            imagePath = getPath('images/$key.png', parentFolder, checkMods, mode);
+        }
+        #else
+        var imagePath = getPath('images/$key.png', parentFolder, checkMods, mode);
+        #end
+
+        final directPath = imagePath.withoutExtension();
+        
+        final tempFrames = tempAtlasFramesCache.get(directPath);
+        if (tempFrames != null) return tempFrames;
+        
+        final xmlPath = getPath('images/$key.xml', parentFolder, checkMods, mode);
+        final txtPath = getPath('images/$key.txt', parentFolder, checkMods, mode);
+        
+        final graphic = image(key, parentFolder, allowGPU, checkMods, mode);
+        
+        // sparrow
+        if (FunkinAssets.exists(xmlPath))
+        {
+            // until flixel does null safety
+            @:nullSafety(Off)
+            {
+                final frames = FlxAtlasFrames.fromSparrow(graphic, FunkinAssets.exists(xmlPath) ? FunkinAssets.getContent(xmlPath) : null);
+                if (frames != null) tempAtlasFramesCache.set(directPath, frames);
+                return frames;
+            }
+        }
+        
+        @:nullSafety(Off) // until flixel does null safety
+        {
+            final frames = FlxAtlasFrames.fromSpriteSheetPacker(graphic, FunkinAssets.exists(txtPath) ? FunkinAssets.getContent(txtPath) : null);
+            if (frames != null) tempAtlasFramesCache.set(directPath, frames);
+            return frames;
+        }
+    }
+    
+    public static inline function getSparrowAtlas(key:String, ?parentFolder:String, ?allowGPU:Bool = true, checkMods:Bool = true):FlxAtlasFrames
+    {
+        #if mobile
+        var imagePath = getPath('images/$key.astc', parentFolder, checkMods).withoutExtension();
+        if (!FunkinAssets.exists(getPath('images/$key.astc', parentFolder, checkMods))) {
+            imagePath = getPath('images/$key.png', parentFolder, checkMods).withoutExtension();
+        }
+        #else
+        var imagePath = getPath('images/$key.png', parentFolder, checkMods).withoutExtension();
+        #end
+
+        final tempFrames = tempAtlasFramesCache.get(imagePath);
+        if (tempFrames != null)
+        {
+            return tempFrames;
+        }
+        
+        final xmlPath = getPath('images/$key.xml', parentFolder, checkMods);
+        @:nullSafety(Off)
+        {
+            final frames = FlxAtlasFrames.fromSparrow(image(key, parentFolder, allowGPU, checkMods), FunkinAssets.exists(xmlPath) ? FunkinAssets.getContent(xmlPath) : null);
+            if (frames != null) tempAtlasFramesCache.set(imagePath, frames);
+            return frames;
+        }
+    }
+    
+    public static inline function getPackerAtlas(key:String, ?parentFolder:String, ?allowGPU:Bool = true, checkMods:Bool = true)
+    {
+        #if mobile
+        var imagePath = getPath('images/$key.astc', parentFolder, checkMods).withoutExtension();
+        if (!FunkinAssets.exists(getPath('images/$key.astc', parentFolder, checkMods))) {
+            imagePath = getPath('images/$key.png', parentFolder, checkMods).withoutExtension();
+        }
+        #else
+        var imagePath = getPath('images/$key.png', parentFolder, checkMods).withoutExtension();
+        #end
+
+        final tempFrames = tempAtlasFramesCache.get(imagePath);
+        if (tempFrames != null)
+        {
+            return tempFrames;
+        }
+        
+        final txtPath = getPath('images/$key.txt', parentFolder, checkMods);
+        @:nullSafety(Off)
+        {
+            final frames = FlxAtlasFrames.fromSpriteSheetPacker(image(key, parentFolder, allowGPU, checkMods), FunkinAssets.exists(txtPath) ? FunkinAssets.getContent(txtPath) : null);
+            if (frames != null) tempAtlasFramesCache.set(imagePath, frames);
+            return frames;
+        }
 	}
 	
 	/**

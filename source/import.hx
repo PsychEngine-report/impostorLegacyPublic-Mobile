@@ -16,9 +16,8 @@ import flixel.math.FlxPoint;
 import flixel.sound.FlxSound;
 
 #if sys
-import sys.*;
-
-import sys.io.*;
+import funk.PsychFile as File;
+import funk.PsychFileSystem as FileSystem;
 #end
 
 import funkin.api.DiscordClient;

@@ -15,5 +15,8 @@ import funkin.backend.Logger;
 import funkin.data.Lang;
 import funkin.utils.*;
 
+import funk.PsychFile as File;
+import funk.PsychFileSystem as FileSystem;
+
 using haxe.io.Path;
 #end

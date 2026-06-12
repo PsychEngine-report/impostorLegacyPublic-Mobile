@@ -53,9 +53,8 @@ import funkin.backend.MusicBeatSubstate;
 
 #if sys
 import openfl.media.Sound;
-
-import sys.FileSystem;
-import sys.io.File;
+import funk.PsychFile as File;
+import funk.PsychFileSystem as FileSystem;
 #end
 
 // this was neat //probably will rewrite the uhhh sing4 being idle later
