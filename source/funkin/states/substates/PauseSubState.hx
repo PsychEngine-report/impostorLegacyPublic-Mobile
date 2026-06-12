@@ -195,7 +195,11 @@ class PauseSubState extends MusicBeatSubstate
 	
 	static function portraitExists(id:String):Bool
 	{
+        #if desktop
 		return Paths.fileExists('images/menu/freeplay/portraits/$id.png');
+        #else
+        return Paths.fileExists('images/menu/freeplay/portraits/$id.astc');
+        #end
 	}
 	
 	public static function getSongInfo(songID:String):Array<String>

@@ -184,7 +184,6 @@ class FunkinAssets
 		}
 		
 		Logger.log('graphic ($key) was not found. Returning flixel-logo instead');
-		
 		return FlxG.bitmap.add('flixel/images/logo/default.png');
 	}
 	

@@ -114,7 +114,11 @@ class AwardsState extends AmongUIState
 		{
 			final unlocked = ownAchievement(i);
 			var iconName:String = achievements[i].icon ?? GameFlags.getAchievementIcon(achievements[i].name);
+            #if desktop
 			if (!unlocked || !Paths.fileExists('images/awards/$iconName.png')) iconName = 'blank';
+            #else
+            if (!unlocked || !Paths.fileExists('images/awards/$iconName.astc')) iconName = 'blank';
+            #end
 			var img:FlxSprite = new FlxSprite(85 + (xAdd * 165), 30 + (yAdd * 130)).loadGraphic(Paths.image('awards/$iconName'));
 			img.setGraphicSize(120, 120);
 			img.updateHitbox();

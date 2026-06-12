@@ -147,12 +147,21 @@ class ToolKitUtils
 	{
 		var data:NotificationData = switch (type)
 		{
+            #if desktop
 			case Success:
 				{title: title, body: body, icon: 'assets/images/editors/notification_success.png'};
 			case Warning:
 				{title: title, body: body, icon: 'assets/images/editors/notification_warn.png'};
 			case Info:
 				{title: title, body: body, icon: 'assets/images/editors/notification_neutral.png'};
+            #else
+            case Success:
+				{title: title, body: body, icon: 'assets/images/editors/notification_success.astc'};
+			case Warning:
+				{title: title, body: body, icon: 'assets/images/editors/notification_warn.astc'};
+			case Info:
+				{title: title, body: body, icon: 'assets/images/editors/notification_neutral.astc'};
+            #end
 				
 			default: {title: title, body: body, type: type};
 		}

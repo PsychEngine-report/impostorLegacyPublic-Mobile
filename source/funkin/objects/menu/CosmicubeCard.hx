@@ -34,7 +34,11 @@ class CosmicubeCard extends flixel.group.FlxSpriteGroup
 		this.id = meta.fileName;
 		this.meta = meta;
 		
+        #if desktop
 		add(slide = new FlxSprite(8, Paths.image('${ext}slides/${Paths.fileExists('images/${ext}slides/$id.png') ? id : 'unknown'}')));
+        #else
+        add(slide = new FlxSprite(8, Paths.image('${ext}slides/${Paths.fileExists('images/${ext}slides/$id.astc') ? id : 'unknown'}')));
+        #end
 		add(cover = new FlxSprite(8, 8, Paths.image('${ext}cover')));
 		add(border = new FlxSprite(Paths.image('${ext}cardBorder')));
 		

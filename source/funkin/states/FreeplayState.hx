@@ -803,7 +803,11 @@ class FreeplayState extends AmongUIState
 					cachedPortraits.push(song[3]);
 					
 					final image:String = 'menu/freeplay/portraits/${song[3]}';
+                    #if desktop
 					if (Paths.fileExists('images/$image.png', LOOSE)) Paths.image(image, LOOSE);
+                    #else
+                    if (Paths.fileExists('images/$image.astc', LOOSE)) Paths.image(image, LOOSE);
+                    #end
 				}
 				songs.push(data);
 			}

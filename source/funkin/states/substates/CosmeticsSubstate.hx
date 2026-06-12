@@ -41,7 +41,11 @@ class CosmeticsSubstate extends MusicBeatSubstate
 		
 		for (id in preloaded)
 		{
+            #if desktop
 			if (!Paths.fileExists('images/menu/cosmicube/items/$id.png', LOOSE)) continue;
+            #else
+            if (!Paths.fileExists('images/menu/cosmicube/items/$id.astc', LOOSE)) continue;
+            #end
 			Paths.image('menu/cosmicube/items/$id', LOOSE);
 		}
 	}
@@ -394,7 +398,11 @@ class CosmeticsSubstate extends MusicBeatSubstate
 		var hasPortrait:Bool = false;
 		if (portraitId != null && portraitId.length > 0)
 		{
+            #if desktop
 			if (!_portraitCache.exists(portraitId)) _portraitCache.set(portraitId, Paths.fileExists('images/menu/cosmicube/items/$portraitId.png', LOOSE));
+            #else
+            if (!_portraitCache.exists(portraitId)) _portraitCache.set(portraitId, Paths.fileExists('images/menu/cosmicube/items/$portraitId.astc', LOOSE));
+            #end
 			
 			if (_portraitCache.get(portraitId))
 			{
@@ -659,7 +667,11 @@ class CosmeticsSubstate extends MusicBeatSubstate
 		var hasPortrait = false;
 		if (portraitId != null && portraitId.length > 0)
 		{
+            #if desktop
 			if (!_portraitCache.exists(portraitId)) _portraitCache.set(portraitId, Paths.fileExists('images/menu/cosmicube/items/$portraitId.png', LOOSE));
+            #else
+            if (!_portraitCache.exists(portraitId)) _portraitCache.set(portraitId, Paths.fileExists('images/menu/cosmicube/items/$portraitId.astc', LOOSE));
+            #end
 			
 			if (_portraitCache.get(portraitId))
 			{
@@ -896,7 +908,11 @@ class CosmeticsSubstate extends MusicBeatSubstate
 	function checkPortraitExists(portraitId:String):Bool
 	{
 		if (_portraitCache.exists(portraitId)) return _portraitCache.get(portraitId);
+        #if desktop
 		var exists = Paths.fileExists('images/menu/cosmicube/items/$portraitId.png', LOOSE);
+        #else
+        var exists = Paths.fileExists('images/menu/cosmicube/items/$portraitId.astc', LOOSE);
+        #end
 		_portraitCache.set(portraitId, exists);
 		return exists;
 	}

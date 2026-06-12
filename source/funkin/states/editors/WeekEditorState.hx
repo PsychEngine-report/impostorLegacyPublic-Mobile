@@ -326,7 +326,11 @@ class WeekEditorState extends MusicBeatState
 		var isMissing:Bool = true;
 		if (assetName != null && assetName.length > 0)
 		{
+            #if desktop
 			if (FunkinAssets.exists(Paths.getPath('images/menubackgrounds/menu_$assetName.png', null, true)))
+            #else
+            if (FunkinAssets.exists(Paths.getPath('images/menubackgrounds/menu_$assetName.astc', null, true)))
+            #end
 			{
 				bgSprite.loadGraphic(Paths.image('menubackgrounds/menu_$assetName'));
 				isMissing = false;
@@ -348,7 +352,11 @@ class WeekEditorState extends MusicBeatState
 		var isMissing:Bool = true;
 		if (assetName != null && assetName.length > 0)
 		{
+            #if desktop
 			if (FunkinAssets.exists(Paths.getPath('images/storymenu/$assetName.png', null, true)))
+            #else
+            if (FunkinAssets.exists(Paths.getPath('images/storymenu/$assetName.astc', null, true)))
+            #end
 			{
 				weekThing.loadGraphic(Paths.image('storymenu/$assetName'));
 				isMissing = false;
@@ -359,7 +367,11 @@ class WeekEditorState extends MusicBeatState
 		{
 			weekThing.visible = false;
 			missingFileText.visible = true;
+            #if desktop
 			missingFileText.text = 'MISSING FILE: images/storymenu/' + assetName + '.png';
+            #else
+            missingFileText.text = 'MISSING FILE: images/storymenu/' + assetName + '.astc';
+            #end
 		}
 		recalculateStuffPosition();
 		

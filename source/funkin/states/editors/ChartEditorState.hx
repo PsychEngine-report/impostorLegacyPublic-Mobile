@@ -71,7 +71,11 @@ class OurLittleFriend extends FlxSprite
 	{
 		super();
 		final basePath = 'images/editors/friends/$char';
+        #if desktop
 		if (FunkinAssets.exists(Paths.getCorePath('$basePath.png')))
+        #else
+        if (FunkinAssets.exists(Paths.getCorePath('$basePath.png')))
+        #end
 		{
 			frames = Paths.getSparrowAtlas(basePath.substr(basePath.indexOf('/') + 1));
 			animation.addByPrefix('idle', 'i', 24);

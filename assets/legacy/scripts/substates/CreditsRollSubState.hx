@@ -560,7 +560,11 @@ function loadCredits():Void
 			var iconPath:String = 'credits/icons/' + credit.icon;
 			if (isFlagIcon) iconPath = 'credits/icons/flags/' + credit.icon.substr(6);
 			
+            #if desktop
 			final iconExists:Bool = Paths.fileExists('images/' + iconPath + '.png');
+            #else
+            final iconExists:Bool = Paths.fileExists('images/' + iconPath + '.astc')
+            #end
 			var icon:FlxSprite = new FlxSprite(0, 0, Paths.image(iconExists ? iconPath : 'credits/icons/unknown'));
 			
 			icon.visible = iconExists;
@@ -585,8 +589,13 @@ function loadCredits():Void
 function rollImage(image:String):Null<FlxGraphic>
 {
 	var rollPath:String = ('credits/roll/' + image);
+    #if desktop
 	var graphic:Null<FlxGraphic> = (Paths.fileExists('images/' + rollPath + '.png') ?
 		{/*trace('load roll image ' + image);*/ Paths.image(rollPath);} : null);
+    #else
+    var graphic:Null<FlxGraphic> = (Paths.fileExists('images/' + rollPath + '.astc') ?
+		{/*trace('load roll image ' + image);*/ Paths.image(rollPath);} : null);
+    #end
 	
 	return graphic;
 }

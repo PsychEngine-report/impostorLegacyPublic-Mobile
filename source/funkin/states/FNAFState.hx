@@ -1267,8 +1267,11 @@ class FNAFState extends MusicBeatState
 		imageShowing = false;
 		passwordActive = false;
 		pauseComputer();
-		
+		#if desktop
 		compMusicLabel.text = imageKey + ".png";
+        #else
+        compMusicLabel.text = imageKey + ".astc";
+        #end
 		compMusicLabel.visible = false;
 		compMusicLabel.alpha = 1;
 		
