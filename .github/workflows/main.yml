@@ -386,5 +386,5 @@ jobs:
             artifacts/ImpostorLegacy-Windows/ImpostorLegacy-Windows.zip
             artifacts/ImpostorLegacy-Linux/ImpostorLegacy-Linux.zip
             artifacts/ImpostorLegacy-MacOs/ImpostorLegacy-MacOs.zip
-            artifacts/*-Android.apk
-            artifacts/*-iOS.ipa
+            artifacts/ImpostorLegacy-Android/*-Android.apk
+            artifacts/ImpostorLegacy-iOS/*-iOS.ipa
